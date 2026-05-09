@@ -507,7 +507,8 @@ body.intro-hidden {
     .hero-content {
         grid-template-columns: 1fr;
         gap: 30px;
-        height: 100dvh;
+        height: auto;
+        min-height: 100vh;
         min-height: 100dvh;
     }
     .phone-mockup {
@@ -525,7 +526,8 @@ body.intro-hidden {
 @media (max-width: 600px) {
     .hero-content {
         gap: 16px;
-        height: 100dvh;
+        height: auto;
+        min-height: 100vh;
         min-height: 100dvh;
     }
     .phone-mockup {
@@ -547,7 +549,8 @@ body.intro-hidden {
 
 @media (max-width: 400px) {
     .hero-content {
-        height: 100dvh;
+        height: auto;
+        min-height: 100vh;
         min-height: 100dvh;
     }
     .phone-mockup {
@@ -689,9 +692,18 @@ body.intro-hidden {
 }
 
 @media (max-width: 1024px) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         gap: 40px;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
     
     .hero-text h1 {
@@ -2545,5 +2557,400 @@ body.intro-hidden {
     
     .recipe-showcase-info {
         padding: 15px;
+    }
+}
+
+/* ===== FULL-HEIGHT DEMO FIT ===== */
+:root {
+    --nav-height: 70px;
+    --hero-x: clamp(12px, 3vw, 28px);
+    --hero-y: clamp(8px, 2svh, 18px);
+    --demo-shell-pad: clamp(4px, 1.1svh, 10px);
+    --demo-radius: clamp(18px, 4svh, 40px);
+}
+
+.hero {
+    height: auto;
+    min-height: calc(100svh - var(--nav-height));
+    padding: var(--hero-y) var(--hero-x);
+}
+
+.hero-content {
+    height: auto;
+    min-height: calc(100svh - var(--nav-height) - var(--hero-y) - var(--hero-y));
+    gap: clamp(28px, 5vw, 60px);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-mockup {
+    width: min(100%, 450px);
+    max-width: calc(100vw - var(--hero-x) - var(--hero-x));
+    height: calc(100svh - var(--nav-height) - var(--hero-y) - var(--hero-y));
+    max-height: 900px;
+    min-height: 0;
+    align-items: stretch;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    min-height: 0;
+    border-radius: var(--demo-radius);
+    padding: var(--demo-shell-pad);
+}
+
+.app-preview {
+    --app-pad: clamp(4px, 0.9svh, 8px);
+    --app-gap: clamp(3px, 0.8svh, 8px);
+    --app-card-pad: clamp(4px, 0.9svh, 8px);
+    --app-nav-h: clamp(42px, 7svh, 55px);
+    --app-font: clamp(10px, 1.35svh, 12px);
+    height: 100%;
+    min-height: 0;
+    border-radius: calc(var(--demo-radius) - var(--demo-shell-pad));
+}
+
+.demo-overlay {
+    border-radius: calc(var(--demo-radius) - var(--demo-shell-pad));
+}
+
+.app-preview .dashboard-main {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+    padding: var(--app-pad);
+    font-size: var(--app-font);
+    overflow: hidden;
+}
+
+.dashboard-bottom-nav {
+    flex: 0 0 var(--app-nav-h);
+    height: var(--app-nav-h);
+    min-height: 0;
+}
+
+.app-preview .dashboard-tab.active {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-preview #tab-overview.active {
+    display: grid;
+    grid-template-rows: repeat(7, auto);
+    align-content: start;
+    gap: var(--app-gap);
+}
+
+.app-preview #tab-overview.active > * {
+    margin-bottom: 0;
+}
+
+.app-preview .greeting-header {
+    gap: var(--app-gap);
+    margin-bottom: 0;
+    padding-bottom: var(--app-gap);
+}
+
+.app-preview .greeting-icon {
+    width: clamp(24px, 4.6svh, 32px);
+    height: clamp(24px, 4.6svh, 32px);
+    font-size: clamp(13px, 2.5svh, 18px);
+}
+
+.app-preview .greeting-header h2 {
+    font-size: clamp(13px, 2.1svh, 16px);
+}
+
+.app-preview .overview-header,
+.app-preview .period-selector,
+.app-preview .nutrition-section {
+    margin-bottom: 0;
+}
+
+.app-preview .date-navigation {
+    gap: clamp(3px, 0.8svh, 6px);
+}
+
+.app-preview .date-btn {
+    width: clamp(22px, 4svh, 28px);
+    height: clamp(22px, 4svh, 28px);
+    font-size: clamp(9px, 1.7svh, 12px);
+}
+
+.app-preview .date-value {
+    min-width: clamp(58px, 10svh, 70px);
+    font-size: clamp(10px, 1.7svh, 12px);
+}
+
+.app-preview .period-btn {
+    padding: clamp(3px, 0.65svh, 4px) 6px;
+    font-size: clamp(8px, 1.45svh, 10px);
+}
+
+.app-preview .calories-card-large,
+.app-preview .nutrition-card,
+.app-preview .hydration-card,
+.app-preview .bmi-card {
+    padding: var(--app-card-pad);
+}
+
+.app-preview .calories-card-large {
+    margin-bottom: 0;
+}
+
+.app-preview .calories-card-header {
+    margin-bottom: var(--app-gap);
+}
+
+.app-preview .calories-large-value {
+    font-size: clamp(18px, 3.3svh, 24px);
+    margin-bottom: 0;
+}
+
+.app-preview .calories-remaining {
+    font-size: clamp(8px, 1.5svh, 10px);
+    margin-bottom: clamp(2px, 0.6svh, 4px);
+}
+
+.app-preview .nutrition-section h3 {
+    font-size: clamp(9px, 1.7svh, 11px);
+    margin-bottom: clamp(2px, 0.6svh, 4px);
+}
+
+.app-preview .nutrition-grid {
+    gap: clamp(3px, 0.65svh, 4px);
+}
+
+.app-preview .nutrition-label {
+    font-size: clamp(6px, 1.25svh, 8px);
+    margin-bottom: 1px;
+}
+
+.app-preview .nutrition-value,
+.app-preview .hydration-value,
+.app-preview .bmi-value {
+    font-size: clamp(10px, 1.8svh, 12px);
+    margin-bottom: 1px;
+}
+
+.app-preview .hydration-label,
+.app-preview .bmi-status,
+.app-preview .calories-text-small {
+    font-size: clamp(7px, 1.3svh, 9px);
+}
+
+.app-preview .hydration-add-btn {
+    width: clamp(19px, 3.7svh, 24px);
+    height: clamp(19px, 3.7svh, 24px);
+    font-size: clamp(9px, 1.7svh, 12px);
+}
+
+.bottom-nav-item {
+    padding: clamp(3px, 0.9svh, 6px) 0;
+}
+
+.bottom-nav-item i {
+    font-size: clamp(14px, 2.6svh, 18px);
+}
+
+.bottom-nav-item span {
+    font-size: clamp(7px, 1.35svh, 8px);
+}
+
+.app-preview #tab-pantry .pantry-grid,
+.app-preview #tab-recipes .recipes-grid,
+.app-preview #tab-settings .settings-container {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.app-preview #tab-pantry .pantry-grid {
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    gap: var(--app-gap);
+}
+
+.app-preview #tab-recipes .recipes-grid {
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    gap: var(--app-gap);
+}
+
+.app-preview .tab-header {
+    flex: 0 0 auto;
+    margin-bottom: var(--app-gap);
+    padding-bottom: var(--app-gap);
+}
+
+.app-preview .pantry-item,
+.app-preview .recipe-card,
+.app-preview .settings-section {
+    min-height: 0;
+    overflow: hidden;
+    padding: var(--app-card-pad);
+}
+
+.app-preview .recipe-card {
+    align-items: center;
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        max-width: none;
+        min-height: auto;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: clamp(20px, 4svh, 34px);
+    }
+
+    .hero-image {
+        order: -1;
+        height: calc(100svh - var(--nav-height) - var(--hero-y) - var(--hero-y));
+    }
+
+    .phone-mockup {
+        width: min(100%, 450px);
+        height: 100%;
+    }
+
+    .phone-screen {
+        margin: 0 auto;
+    }
+
+    .hero-text {
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .hero-buttons,
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        margin-top: clamp(18px, 3svh, 30px);
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --nav-height: 64px;
+        --hero-x: clamp(8px, 3vw, 14px);
+        --hero-y: clamp(5px, 1.4svh, 10px);
+        --demo-shell-pad: clamp(3px, 0.9svh, 6px);
+        --demo-radius: clamp(12px, 5vw, 22px);
+    }
+
+    .phone-mockup {
+        width: 100%;
+        max-width: calc(100vw - var(--hero-x) - var(--hero-x));
+    }
+
+    .hero-text h1 {
+        font-size: clamp(24px, 8vw, 32px);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(14px, 4vw, 16px);
+        margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+
+    .hero-buttons .btn {
+        flex: 1 1 140px;
+        justify-content: center;
+        padding: 10px 12px;
+    }
+
+    .hero-stats {
+        gap: clamp(14px, 6vw, 26px);
+        margin-top: 20px;
+    }
+}
+
+@media (max-height: 700px) {
+    :root {
+        --hero-y: 6px;
+        --demo-shell-pad: 5px;
+    }
+
+    .app-preview {
+        --app-pad: 4px;
+        --app-gap: 3px;
+        --app-card-pad: 4px;
+        --app-nav-h: 44px;
+        --app-font: 10px;
+    }
+
+    .phone-screen {
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.25);
+    }
+
+    .app-preview .calories-remaining,
+    .app-preview .calories-text-small {
+        display: none;
+    }
+
+    .app-preview .calories-card-header {
+        margin-bottom: 2px;
+    }
+
+    .app-preview .calories-bar-large,
+    .app-preview .nutrition-bar,
+    .app-preview .hydration-bar,
+    .app-preview .bmi-bar {
+        height: 2px;
+    }
+}
+
+@media (max-height: 560px) {
+    .app-preview {
+        --app-pad: 3px;
+        --app-gap: 2px;
+        --app-card-pad: 3px;
+        --app-nav-h: 38px;
+        --app-font: 9px;
+    }
+
+    .app-preview .greeting-header {
+        padding-bottom: 2px;
+    }
+
+    .app-preview .calories-badge,
+    .app-preview .recipe-desc,
+    .app-preview .tag,
+    .app-preview .item-details p:nth-child(n + 3),
+    .app-preview .settings-section p {
+        display: none;
+    }
+
+    .bottom-nav-item {
+        gap: 0;
+    }
+
+    .bottom-nav-item span {
+        display: none;
     }
 }
