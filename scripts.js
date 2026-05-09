@@ -72,7 +72,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+        const navbar = document.querySelector('.navbar');
+        const offset = (navbar ? navbar.offsetHeight : 0) + 12;
+        const top = section.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({
+            top: Math.max(top, 0),
+            behavior: 'smooth'
+        });
     }
 }
 

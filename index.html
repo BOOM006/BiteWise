@@ -23,10 +23,10 @@
                 <span></span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" onclick="scrollToSection('home')">Domov</a></li>
-                <li><a href="#features" onclick="scrollToSection('features')">Funkcie</a></li>
-                <li><a href="#home" onclick="scrollToSection('home')">Demo</a></li>
-                <li><a href="#recipes" onclick="scrollToSection('recipes')">Recepty</a></li>
+                <li><a href="#home" onclick="event.preventDefault(); scrollToSection('home')">Domov</a></li>
+                <li><a href="#features" onclick="event.preventDefault(); scrollToSection('features')">Funkcie</a></li>
+                <li><a href="#demo" onclick="event.preventDefault(); scrollToSection('demo')">Demo</a></li>
+                <li><a href="#recipes" onclick="event.preventDefault(); scrollToSection('recipes')">Recepty</a></li>
                 <li><button class="nav-download-btn" type="button">Stiahnuť aplikáciu</button></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button></li>
             </ul>
@@ -41,6 +41,7 @@
                 <h1 class="hero-title">BiteWise</h1>
                 <p class="hero-subtitle">Aplikácia, ktorá zmení tvoju chladničku na osobného nutričného asistenta. Naskenuj potraviny, sleduj výživu a var z toho, čo už máš doma.</p>
                 <div class="hero-badges">
+                    <span><i class="fas fa-barcode"></i> skenovanie potravín</span>
                     <span><i class="fas fa-utensils"></i> recepty z tvojej špajzy</span>
                     <span><i class="fas fa-bell"></i> expirácie pod kontrolou</span>
                     <span><i class="fas fa-list-check"></i> nákupný zoznam na mieru</span>
@@ -73,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero-image">
+            <div class="hero-image" id="demo">
                 <div class="phone-mockup">
                     <div class="phone-screen">
                         <!-- DEMO OVERLAY -->
